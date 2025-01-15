@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="masthead-heading text-uppercase mb-0">
+        {{ student.firstName }} {{ student.lastName }}
+    </h1>
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <th>Voornaam</th>
+            <td>{{ student.firstName }}</td>
+        </tr>
+        <tr>
+            <th>Achternaam</th>
+            <td>{{ student.lastName }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ student.email }}</td>
+        </tr>
+        <tr>
+            <th>Leeftijd</th>
+            <td>{{ student.age }}</td>
+        </tr>
+
+        </tr>
+        </thead>
+    </table>
+
+    <h1 class="masthead-heading text-uppercase mb-0">
+        Cijfers
+    </h1>
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <th>Cijfer</th>
+            <th>Vak</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for grade in student.grades %}
+            <tr>
+                <td>{{ grade.grade }}</td>
+                <td>{{ grade.subject.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-outline-dark" href="{{ path('app_add_grade_student', {'id': student.id }) }}">Toevoegen</a>
+{% endblock %}
